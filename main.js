@@ -229,10 +229,6 @@ function initLevel () {
 function touchStart (e) {
 	var controlCanvasX = e.touches[0].pageX;
 	var controlCanvasY = e.touches[0].pageY;
-}
-
-function touchEnd (e) {
-	if (gState == 0) gState = 1;
 	if (gState == 2) {
 		if (level == finalLevel) initGame();
 		else {
@@ -241,6 +237,10 @@ function touchEnd (e) {
 		}
 	}
 	if (gState == 3) initLevel();
+}
+
+function touchEnd (e) {
+	if (gState == 0) gState = 1;
 }
 
 function jumpTouchStart (e) {
