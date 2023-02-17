@@ -1,5 +1,8 @@
 var canvas;
 var context;
+var jumpSvg;
+var leftSvg;
+var rightSvg;
 var bgm;
 var jumpSound;
 var attackSound;
@@ -130,10 +133,13 @@ function initDocument () {
 	attackSound = document.getElementById("attack");
 	
 	// Prepare controls
-	document.getElementById("jumpSvg").addEventListener("touchstart", jumpTouchStart, false);
-	document.getElementById("jumpSvg").addEventListener("touchend", jumpTouchEnd, false);
-	document.getElementById("jumpSvg").onmousedown = jumpTouchStart;
-	document.getElementById("jumpSvg").onmouseup = jumpTouchEnd;
+	jumpSvg = document.getElementById("jumpSvg");
+	jumpSvg.addEventListener("touchstart", jumpTouchStart, false);
+	jumpSvg.addEventListener("touchend", jumpTouchEnd, false);
+	jumpSvg.onmousedown = jumpTouchStart;
+	jumpSvg.onmouseup = jumpTouchEnd;
+	jumpSvg.style.position = "fixed";
+	jumpSvg.style.bottom = 10;
 	document.getElementById("leftSvg").addEventListener("touchstart", leftTouchStart, false);
 	document.getElementById("leftSvg").addEventListener("touchend", leftTouchEnd, false);
 	document.getElementById("leftSvg").onmousedown = leftTouchStart;
