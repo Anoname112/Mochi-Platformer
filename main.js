@@ -128,6 +128,13 @@ function initDocument () {
 	if (isMobile) {
 		document.body.addEventListener("touchstart", touchStart, false);
 		document.body.addEventListener("touchend", touchEnd, false);
+		
+		document.getElementById("jumpSvg").addEventListener("touchstart", jumpTouchStart, false);
+		document.getElementById("jumpSvg").addEventListener("touchend", jumpTouchEnd, false);
+		document.getElementById("leftSvg").addEventListener("touchstart", leftTouchStart, false);
+		document.getElementById("leftSvg").addEventListener("touchend", leftTouchEnd, false);
+		document.getElementById("rightSvg").addEventListener("touchstart", rightTouchStart, false);
+		document.getElementById("rightSvg").addEventListener("touchend", rightTouchEnd, false);
 	}
 }
 
@@ -226,6 +233,35 @@ function touchStart (e) {
 
 function touchEnd (e) {
 	if (gState == 0) gState = 1;
+}
+
+function jumpTouchStart (e) {
+	if (gState == 1 && !player.IsFloating && !player.IsJumped && !jumped) {
+		player.JumpTime = jumpTime;
+		player.IsJumped = true;
+		jumped = true;
+		playAudio(jumpSound);
+	}
+}
+
+function jumpTouchEnd (e) {
+	jumped = false;
+}
+
+function leftTouchStart (e) {
+	if (gState == 1) mLeft = true;
+}
+
+function leftTouchEnd (e) {
+	mLeft = false;
+}
+
+function rightTouchStart (e) {
+	if (gState == 1) mRight = true;
+}
+
+function rightTouchEnd (e) {
+	mRight = false;
 }
 
 function keyDown (e) {
