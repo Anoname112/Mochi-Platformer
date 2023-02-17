@@ -649,8 +649,8 @@ function timerTick () {
 	
 	// Draw background
 	for (i = 0; i < backgrounds.length; i++) {
-		var backgroundX = pX + (backgrounds[i].X - player.X / 2) * scaling;
-		var backgroundY = pY + (backgrounds[i].Y - fixedY / 2) * scaling;
+		var backgroundX = pX + (backgrounds[i].X - player.X / 1.5) * scaling;
+		var backgroundY = pY + (backgrounds[i].Y - fixedY / 1.5) * scaling;
 		var backgroundWidth = (backgroundImg.width + 10) * scaling;
 		var backgroundHeight = (backgroundImg.height + 10) * scaling;
 		drawImage(backgroundImg, backgroundX, backgroundY, backgroundWidth, backgroundHeight);
