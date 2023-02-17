@@ -124,6 +124,11 @@ function initDocument () {
 	}, false);
 	jumpSound = document.getElementById("jump");
 	attackSound = document.getElementById("attack");
+	
+	if (isMobile) {
+		document.body.addEventListener("touchstart", touchStart, false);
+		document.body.addEventListener("touchend", touchEnd, false);
+	}
 }
 
 function initGame () {
@@ -212,6 +217,15 @@ function initLevel () {
 	
 	if (level == 1) gState = 0;
 	else gState = 1;
+}
+
+function touchStart (e) {
+	var controlCanvasX = e.touches[0].pageX;
+	var controlCanvasY = e.touches[0].pageY;
+}
+
+function touchEnd (e) {
+	if (gState == 0) gState = 1;
 }
 
 function keyDown (e) {
