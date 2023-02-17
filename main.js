@@ -94,6 +94,8 @@ function initDocument () {
 	document.body.style.background = bodyBackColor;
 	document.body.style.color = bodyTextColor;
 	document.body.style.font = bodyFont;
+	document.body.addEventListener("touchstart", touchStart, false);
+	document.body.addEventListener("touchend", touchEnd, false);
 	
 	// Prepare canvas
 	canvas = document.getElementById("myCanvas");
@@ -125,17 +127,19 @@ function initDocument () {
 	jumpSound = document.getElementById("jump");
 	attackSound = document.getElementById("attack");
 	
-	if (isMobile) {
-		document.body.addEventListener("touchstart", touchStart, false);
-		document.body.addEventListener("touchend", touchEnd, false);
-		
-		document.getElementById("jumpSvg").addEventListener("touchstart", jumpTouchStart, false);
-		document.getElementById("jumpSvg").addEventListener("touchend", jumpTouchEnd, false);
-		document.getElementById("leftSvg").addEventListener("touchstart", leftTouchStart, false);
-		document.getElementById("leftSvg").addEventListener("touchend", leftTouchEnd, false);
-		document.getElementById("rightSvg").addEventListener("touchstart", rightTouchStart, false);
-		document.getElementById("rightSvg").addEventListener("touchend", rightTouchEnd, false);
-	}
+	// Prepare controls
+	document.getElementById("jumpSvg").addEventListener("touchstart", jumpTouchStart, false);
+	document.getElementById("jumpSvg").addEventListener("touchend", jumpTouchEnd, false);
+	document.getElementById("jumpSvg").onmousedown = jumpTouchStart;
+	document.getElementById("jumpSvg").onmouseup = jumpTouchEnd;
+	document.getElementById("leftSvg").addEventListener("touchstart", leftTouchStart, false);
+	document.getElementById("leftSvg").addEventListener("touchend", leftTouchEnd, false);
+	document.getElementById("leftSvg").onmousedown = leftTouchStart;
+	document.getElementById("leftSvg").onmouseup = leftTouchEnd;
+	document.getElementById("rightSvg").addEventListener("touchstart", rightTouchStart, false);
+	document.getElementById("rightSvg").addEventListener("touchend", rightTouchEnd, false);
+	document.getElementById("rightSvg").onmousedown = rightTouchStart;
+	document.getElementById("rightSvg").onmouseup = rightTouchEnd;
 }
 
 function initGame () {
