@@ -121,7 +121,7 @@ function initDocument () {
 	hidden.style.visibility = "hidden";
 	
 	// Prepare audio
-	hidden.innerHTML += "<audio id=\"bgm\" autoplay><source src=\"" + bgmPath + "\" /></audio>";
+	hidden.innerHTML += "<audio id=\"bgm\"><source src=\"" + bgmPath + "\" /></audio>";
 	hidden.innerHTML += "<audio id=\"jump\"><source src=\"" + jumpPath + "\" /></audio>";
 	hidden.innerHTML += "<audio id=\"attack\"><source src=\"" + attackPath + "\" /></audio>";
 	bgm = document.getElementById("bgm");
