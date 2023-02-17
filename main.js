@@ -233,6 +233,14 @@ function touchStart (e) {
 
 function touchEnd (e) {
 	if (gState == 0) gState = 1;
+	if (gState == 2) {
+		if (level == finalLevel) initGame();
+		else {
+			level++;
+			initLevel();
+		}
+	}
+	if (gState == 3) initLevel();
 }
 
 function jumpTouchStart (e) {
@@ -271,6 +279,14 @@ function keyDown (e) {
 		case 32:	// Space
 			if (gState == 0) resume();
 			else if (gState == 1) pause();
+			if (gState == 2) {
+				if (level == finalLevel) initGame();
+				else {
+					level++;
+					initLevel();
+				}
+			}
+			if (gState == 3) initLevel();
 			break;
 		case 37:	// Left
 			if (gState == 1) mLeft = true;
