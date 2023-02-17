@@ -1,6 +1,6 @@
 const interval = 15;
 const yPad = 0;
-const scaling = 2;
+const scaling = 1.5;
 const deathPadding = 600;
 const gravity = 10;		// Must be smaller than 15
 
