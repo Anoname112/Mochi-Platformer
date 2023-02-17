@@ -1,0 +1,7 @@
+Controls:
+- Arrow keys: Move
+- Enter: Pause/Resume
+- Left: Move to the left
+- Right: Move to the right
+- X: Jump
+- Z: Continue/Play again
