@@ -1,6 +1,7 @@
 var canvas;
 var context;
 var jumpSvg;
+var fireSvg;
 var leftSvg;
 var rightSvg;
 var bgm;
@@ -139,15 +140,40 @@ function initDocument () {
 	jumpSvg.onmousedown = jumpTouchStart;
 	jumpSvg.onmouseup = jumpTouchEnd;
 	jumpSvg.style.position = "fixed";
-	jumpSvg.style.bottom = 10;
-	document.getElementById("leftSvg").addEventListener("touchstart", leftTouchStart, false);
-	document.getElementById("leftSvg").addEventListener("touchend", leftTouchEnd, false);
-	document.getElementById("leftSvg").onmousedown = leftTouchStart;
-	document.getElementById("leftSvg").onmouseup = leftTouchEnd;
-	document.getElementById("rightSvg").addEventListener("touchstart", rightTouchStart, false);
-	document.getElementById("rightSvg").addEventListener("touchend", rightTouchEnd, false);
-	document.getElementById("rightSvg").onmousedown = rightTouchStart;
-	document.getElementById("rightSvg").onmouseup = rightTouchEnd;
+	jumpSvg.style.bottom = controlPadding;
+	jumpSvg.style.left = controlPadding;
+	jumpSvg.children[0].style.width = controlSize;
+	jumpSvg.children[0].style.height = controlSize;
+	fireSvg = document.getElementById("fireSvg");
+	fireSvg.addEventListener("touchstart", fireTouchStart, false);
+	fireSvg.addEventListener("touchend", fireTouchEnd, false);
+	fireSvg.onmousedown = fireTouchStart;
+	fireSvg.onmouseup = fireTouchEnd;
+	fireSvg.style.position = "fixed";
+	fireSvg.style.bottom = controlPadding;
+	fireSvg.style.left = controlPadding * 2 + controlSize;
+	fireSvg.children[0].style.width = controlSize;
+	fireSvg.children[0].style.height = controlSize;
+	leftSvg = document.getElementById("leftSvg");
+	leftSvg.addEventListener("touchstart", leftTouchStart, false);
+	leftSvg.addEventListener("touchend", leftTouchEnd, false);
+	leftSvg.onmousedown = leftTouchStart;
+	leftSvg.onmouseup = leftTouchEnd;
+	leftSvg.style.position = "fixed";
+	leftSvg.style.bottom = controlPadding;
+	leftSvg.style.right = controlPadding * 2 + controlSize;
+	leftSvg.children[0].style.width = controlSize;
+	leftSvg.children[0].style.height = controlSize;
+	rightSvg = document.getElementById("rightSvg");
+	rightSvg.addEventListener("touchstart", rightTouchStart, false);
+	rightSvg.addEventListener("touchend", rightTouchEnd, false);
+	rightSvg.onmousedown = rightTouchStart;
+	rightSvg.onmouseup = rightTouchEnd;
+	rightSvg.style.position = "fixed";
+	rightSvg.style.bottom = controlPadding;
+	rightSvg.style.right = controlPadding;
+	rightSvg.children[0].style.width = controlSize;
+	rightSvg.children[0].style.height = controlSize;
 }
 
 function initGame () {
@@ -239,8 +265,8 @@ function initLevel () {
 }
 
 function touchStart (e) {
-	var controlCanvasX = e.touches[0].pageX;
-	var controlCanvasY = e.touches[0].pageY;
+	//var controlCanvasX = e.touches[0].pageX;
+	//var controlCanvasY = e.touches[0].pageY;
 	if (gState == 2) {
 		if (level == finalLevel) initGame();
 		else {
@@ -252,7 +278,7 @@ function touchStart (e) {
 }
 
 function touchEnd (e) {
-	if (gState == 0) gState = 1;
+	if (gState == 0) resume();
 }
 
 function jumpTouchStart (e) {
@@ -266,6 +292,19 @@ function jumpTouchStart (e) {
 
 function jumpTouchEnd (e) {
 	jumped = false;
+}
+
+function fireTouchStart (e) {
+	if (gState == 1 && !player.IsAttacked && !attacked) {
+		player.AttackTime = attackTime;
+		player.IsAttacked = true;
+		attacked = true;
+		playAudio(attackSound);
+	}
+}
+
+function fireTouchEnd (e) {
+	attacked = false;
 }
 
 function leftTouchStart (e) {
