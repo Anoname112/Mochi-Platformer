@@ -96,6 +96,8 @@ function initDocument () {
 	document.body.style.font = bodyFont;
 	document.body.addEventListener("touchstart", touchStart, false);
 	document.body.addEventListener("touchend", touchEnd, false);
+	document.body.onmousedown = touchStart;
+	document.body.onmouseup = touchEnd;
 	
 	// Prepare canvas
 	canvas = document.getElementById("myCanvas");
