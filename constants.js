@@ -61,7 +61,7 @@ const attackPath = "resources/attack.wav";
 
 // Control
 const controlPadding = 10;
-const controlSize = 90;
+const controlSize = 80;
 const mLeftSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + controlSize + '" height="' + controlSize + '" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16"><path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/></svg>';
 const mRightSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + controlSize + '" height="' + controlSize + '" fill="currentColor" class="bi bi-caret-right" viewBox="0 0 16 16"><path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/></svg>';
 const mJumpSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + controlSize + '" height="' + controlSize + '" fill="currentColor" class="bi bi-caret-up-square-fill" viewBox="0 0 16 16"><path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm4 9h8a.5.5 0 0 0 .374-.832l-4-4.5a.5.5 0 0 0-.748 0l-4 4.5A.5.5 0 0 0 4 11z"/></svg>';
