@@ -40,26 +40,26 @@ var deathLine;
 
 // Images
 const images = [];
-const Left1 = newImg("resources/Left1.png");
-const Right1 = newImg("resources/Right1.png");
-const Left2 = newImg("resources/Left2.png");
-const Right2 = newImg("resources/Right2.png");
-const dLeft = newImg("resources/dLeft.png");
-const dRight = newImg("resources/dRight.png");
-const jLeft = newImg("resources/jLeft.png");
-const jRight = newImg("resources/jRight.png");
-const jdLeft = newImg("resources/jdLeft.png");
-const jdRight = newImg("resources/jdRight.png");
-const eLeft = newImg("resources/eLeft.png");
-const eRight = newImg("resources/eRight.png");
-const rSwordImg1 = newImg("resources/rSword1_1.png");
-const rSwordImg2 = newImg("resources/rSword1_2.png");
-const rSwordImg3 = newImg("resources/rSword1_3.png");
-const lSwordImg1 = newImg("resources/lSword1_1.png");
-const lSwordImg2 = newImg("resources/lSword1_2.png");
-const lSwordImg3 = newImg("resources/lSword1_3.png");
+const Left1 = newImg("resources/player_left1.png");
+const Right1 = newImg("resources/player_right1.png");
+const Left2 = newImg("resources/player_left2.png");
+const Right2 = newImg("resources/player_right2.png");
+const dLeft = newImg("resources/player_dLeft.png");
+const dRight = newImg("resources/player_dRight.png");
+const jLeft = newImg("resources/player_jLeft.png");
+const jRight = newImg("resources/player_jRight.png");
+const jdLeft = newImg("resources/player_jdLeft.png");
+const jdRight = newImg("resources/player_jdRight.png");
+const eLeft = newImg("resources/enemyLeft.png");
+const eRight = newImg("resources/enemyRight.png");
+const rSwordImg1 = newImg("resources/sword2_right1.png");
+const rSwordImg2 = newImg("resources/sword2_right2.png");
+const rSwordImg3 = newImg("resources/sword2_right3.png");
+const lSwordImg1 = newImg("resources/sword2_left1.png");
+const lSwordImg2 = newImg("resources/sword2_left2.png");
+const lSwordImg3 = newImg("resources/sword2_left3.png");
 const doorImg = newImg("resources/Door.png");
-const hpImg = newImg("resources/HP.png");
+const hpImg = newImg("resources/HPIcon.png");
 const hpBarBackImg = newImg("resources/HPBarBack.png");
 const hpBarGreenImg = newImg("resources/HPBarGreen.png");
 const hpBarYellowImg = newImg("resources/HPBarYellow.png");
@@ -328,6 +328,7 @@ function keyDown (e) {
 	switch (key) {
 		case 13:	// Enter
 		case 32:	// Space
+		case 90:	// Z
 			if (gState == 0) resume();
 			else if (gState == 1) pause();
 			if (gState == 2) {
@@ -360,16 +361,6 @@ function keyDown (e) {
 				jumped = true;
 				playAudio(jumpSound);
 			}
-			break;
-		case 90:	// Z
-			if (gState == 2) {
-				if (level == finalLevel) initGame();
-				else {
-					level++;
-					initLevel();
-				}
-			}
-			if (gState == 3) initLevel();
 			break;
 		default:
 			break;
@@ -549,24 +540,24 @@ function timerTick () {
 			if (player.Dir > 0) {
 				swordImg = rSwordImg2;
 				swordX = playerCenterX - 3;
-				swordY = playerCenterY - 16;
+				swordY = playerCenterY - 8;
 			}
 			else {
 				swordImg = lSwordImg2;
 				swordX = playerCenterX + 3 - swordImg.width;
-				swordY = playerCenterY - 16;
+				swordY = playerCenterY - 8;
 			}
 		}
 		else {
 			if (player.Dir > 0) {
 				swordImg = rSwordImg3;
 				swordX = playerCenterX - 3;
-				swordY = playerCenterY - 16;
+				swordY = playerCenterY - 5;
 			}
 			else {
 				swordImg = lSwordImg3;
 				swordX = playerCenterX + 3 - swordImg.width;
-				swordY = playerCenterY - 16;
+				swordY = playerCenterY - 5;
 			}
 			
 			// Sword & enemies collision
@@ -587,8 +578,8 @@ function timerTick () {
 									enemies.splice(i, 1);
 								}
 								else {
-									if (player.Dir > 0) enemies[i].X = swordX + swordImg.width;
-									else enemies[i].X = swordX - enemies[i].Image.width;
+									if (player.Dir > 0) enemies[i].X += enemies[i].Image.width;
+									else enemies[i].X -= enemies[i].Image.width;
 								}
 								break;
 							}

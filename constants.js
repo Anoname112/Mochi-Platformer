@@ -55,9 +55,9 @@ const hpBarWidth = 100;
 //const hpBarRed = "#f00";
 
 // Sound
-const bgmPath = "resources/music.mp3";
-const jumpPath = "resources/jump.mp3";
-const attackPath = "resources/attack.wav";
+const bgmPath = "resources/music_bgm.mp3";
+const jumpPath = "resources/music_jump.mp3";
+const attackPath = "resources/music_attack.wav";
 
 // Control
 const controlPadding = 10;

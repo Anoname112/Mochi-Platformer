@@ -19,7 +19,7 @@ function stopAudio (audio) {
 }
 
 function newImg (path) {
-	tempImg = new Image;
+	tempImg = new Image();
 	tempImg.src = path;
 	images.push(tempImg);
 	return tempImg;
