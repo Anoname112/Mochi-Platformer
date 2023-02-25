@@ -17,7 +17,7 @@ const audioVisibility = "hidden";
 const msgY = 15;
 const msgTextColor = "#000";
 const msgFontSize = 15 * scaling;
-const msgSpacing = 4 + scaling * 6;
+const msgSpacing = (isMobile || isPortrait) ? 5 + scaling * 5 : 4 + scaling * 6;
 const msgFont = msgFontSize + "px Consolas";
 
 // Animation
