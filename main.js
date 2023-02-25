@@ -732,11 +732,22 @@ function timerTick () {
 	drawMessage(message, rightMessageX, messageY);
 	message = "Paused";
 	var midMessageX = (canvas.width - message.length * msgSpacing) / 2;
+	if (isMobile || isPortrait) messageY += msgFontSize + msgSpacing;
 	if (gState == 0) drawMessage(message, midMessageX, messageY);
 	else if (gState == 2) {
 		if (level == finalLevel) {
-			message = "You finished the game. Press Z to play again";
-			drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+			if (isMobile || isPortrait) {
+				message = "You finished the game.";
+				drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+				
+				messageY += msgFontSize + msgSpacing;
+				message = "Press Z to play again";
+				drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+			}
+			else {
+				message = "You finished the game. Press Z to play again";
+				drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+			}
 		}
 		else {
 			message = "You win. Press Z to continue";
