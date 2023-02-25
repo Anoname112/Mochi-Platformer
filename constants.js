@@ -28,7 +28,7 @@ const attackTime = 12;	// Diviable by 3
 const attackTime3 = attackTime / 3;
 
 // Player
-const playerHealth = 17;
+const playerHealth = 5;
 const playerAttack = 5;	
 const playerSpeed = 5;	// Must be smaller than 15
 const stepCounter = 15;
