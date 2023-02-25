@@ -705,13 +705,13 @@ function timerTick () {
 	}
 	
 	// Draw HP icon
-	var iconX = msgY;
-	var iconY = msgY;
+	var iconX = msgPad;
+	var iconY = msgPad;
 	var iconWidth = hpImg.width * scaling;
 	var iconHeight = hpImg.height * scaling;
 	drawImage(hpImg, iconX, iconY, iconWidth, iconHeight);
 	// Draw HP bar back 
-	var barX = msgY + hpImg.width * scaling;
+	var barX = msgPad + hpImg.width * scaling;
 	var barWidth = hpBarWidth * scaling;
 	drawImage(hpBarBackImg, barX, iconY, barWidth, iconHeight);
 	// Draw HP bar
@@ -722,40 +722,40 @@ function timerTick () {
 	// Draw HP bar border
 	drawImage(hpBarBorderImg, barX, iconY, barWidth, iconHeight);
 	// Draw HP message
-	var messageX = msgY + iconWidth + barWidth + 10;
-	var messageY = msgY * scaling;
+	var messageX = msgPad + iconWidth + barWidth + 10;
+	var messageY = msgPad * scaling;
 	drawMessage(player.CurHealth + " / " + player.MaxHealth, messageX, messageY);
 	
 	// Draw messages
 	message = "Level " + level;
-	var rightMessageX = canvas.width - msgY - message.length * msgSpacing;
+	var rightMessageX = canvas.width - msgPad - message.length * msgSpacing;
 	drawMessage(message, rightMessageX, messageY);
 	message = "Paused";
-	var midMessageX = (canvas.width - message.length * msgSpacing) / 2;
+	var midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
 	if (isMobile || isPortrait) messageY += msgFontSize + msgSpacing;
 	if (gState == 0) drawMessage(message, midMessageX, messageY);
 	else if (gState == 2) {
 		if (level == finalLevel) {
 			if (isMobile || isPortrait) {
 				message = "You finished the game.";
-				drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+				drawMessage(message, midMessageX, messageY);
 				
 				messageY += msgFontSize + msgSpacing;
 				message = "Press Z to play again";
-				drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+				drawMessage(message, midMessageX, messageY);
 			}
 			else {
 				message = "You finished the game. Press Z to play again";
-				drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+				drawMessage(message, midMessageX, messageY);
 			}
 		}
 		else {
 			message = "You win. Press Z to continue";
-			drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+			drawMessage(message, midMessageX, messageY);
 		}
 	}
 	else if (gState == 3) {
 		message = "You lose. Press Z to play again";
-		drawMessage(message, (canvas.width - message.length * msgSpacing) / 2, messageY);
+		drawMessage(message, midMessageX, messageY);
 	}
 }
