@@ -738,24 +738,29 @@ function timerTick () {
 		if (level == finalLevel) {
 			if (isMobile || isPortrait) {
 				message = "You finished the game.";
+				midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
 				drawMessage(message, midMessageX, messageY);
 				
 				messageY += msgFontSize + msgSpacing;
 				message = "Press Z to play again";
+				midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
 				drawMessage(message, midMessageX, messageY);
 			}
 			else {
 				message = "You finished the game. Press Z to play again";
+				midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
 				drawMessage(message, midMessageX, messageY);
 			}
 		}
 		else {
 			message = "You win. Press Z to continue";
+			midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
 			drawMessage(message, midMessageX, messageY);
 		}
 	}
 	else if (gState == 3) {
 		message = "You lose. Press Z to play again";
+		midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
 		drawMessage(message, midMessageX, messageY);
 	}
 }
