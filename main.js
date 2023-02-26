@@ -21,6 +21,7 @@ var backgrounds;
 var gState;
 var level;		// Current level
 var message;
+var midMessageX;
 
 var player;
 var mLeft;		// Move left boolean
@@ -726,14 +727,18 @@ function timerTick () {
 	var messageY = msgPad * scaling;
 	drawMessage(player.CurHealth + " / " + player.MaxHealth, messageX, messageY);
 	
-	// Draw messages
+	// Draw level message
 	message = "Level " + level;
 	var rightMessageX = canvas.width - msgPad - message.length * msgSpacing;
 	drawMessage(message, rightMessageX, messageY);
-	message = "Paused";
-	var midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
+	
+	// Draw middle messages
 	if (isMobile || isPortrait) messageY += msgFontSize + msgSpacing;
-	if (gState == 0) drawMessage(message, midMessageX, messageY);
+	if (gState == 0) {
+		message = "Paused";
+		midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
+		drawMessage(message, midMessageX, messageY);
+	}
 	else if (gState == 2) {
 		if (level == finalLevel) {
 			if (isMobile || isPortrait) {
