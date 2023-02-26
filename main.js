@@ -706,7 +706,7 @@ function timerTick () {
 	}
 	
 	// Draw HP icon
-	var iconX = msgPad;
+	var iconX = msgPad + 1;
 	var iconY = msgPad;
 	var iconWidth = hpImg.width * scaling;
 	var iconHeight = hpImg.height * scaling;
