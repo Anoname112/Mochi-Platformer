@@ -536,7 +536,7 @@ function timerTick () {
 				swordY = playerCenterY + 3;
 			}
 		}
-		else if (player.AttackTime > attackTime3 * 2) {
+		else if (player.AttackTime > attackTime23) {
 			if (player.Dir > 0) {
 				swordImg = rSwordImg2;
 				swordX = playerCenterX - 3;

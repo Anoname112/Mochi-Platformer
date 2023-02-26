@@ -25,7 +25,7 @@ const invinTime = 30;
 const healDelay = 50;
 const jumpTime = 21;
 const attackTime = 13;
-const attackTime3 = attackTime / 3;
+const attackTime23 = attackTime * 2 / 3;
 
 // Player
 const playerHealth = 5;
