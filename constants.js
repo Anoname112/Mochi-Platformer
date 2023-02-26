@@ -7,11 +7,11 @@ const scaling = 1.5;
 const deathPadding = 600;
 const gravity = 10;		// Must be smaller than 15
 
-const bodyBackColor = "#1f1f1f";
-const bodyTextColor = "#fff";
+const bodyBackColor = "#1F1F1F";
+const bodyTextColor = "#FFFFFF";
 const bodyFont = "15px Segoe UI";
 const canvasBorderRadius = 0;
-const canvasBackColor = "#fff";
+const canvasBackColor = "#FFFFFF";
 const canvasPosition = "fixed";
 const audioVisibility = "hidden";
 const msgPad = 15;
@@ -24,13 +24,13 @@ const msgFont = msgFontSize + "px Consolas";
 const invinTime = 30;
 const healDelay = 50;
 const jumpTime = 21;
-const attackTime = 12;	// Diviable by 3
+const attackTime = 13;
 const attackTime3 = attackTime / 3;
 
 // Player
 const playerHealth = 5;
-const playerAttack = 5;	
-const playerSpeed = 5;	// Must be smaller than 15
+const playerAttack = 5;
+const playerSpeed = 5;          // Must be smaller than 15
 const stepCounter = 15;
 
 // Heart
@@ -45,14 +45,14 @@ const enemyHpColor = "#5D0F0D";
 
 // Platform
 const platThick = 50;
-const platColor = "#f9a965";	// SandyBrown
+const platColor = "#F9A965";    // SandyBrown
 
 // HP bar
 const hpBarWidth = 100;
-//const hpBarBack = "#f0f0f0";
-//const hpBarGreen = "#0f0";
-//const hpBarYellow = "#ff0";
-//const hpBarRed = "#f00";
+//const hpBarBack = "#F0F0F0";
+//const hpBarGreen = "#00FF00";
+//const hpBarYellow = "#FFFF00";
+//const hpBarRed = "#FF0000";
 
 // Sound
 const bgmPath = "resources/music_bgm.mp3";
