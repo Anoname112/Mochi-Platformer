@@ -43,5 +43,7 @@ function generateLevel (level) {
 			player.X = 50;
 			player.Y = 380;
 			break;
+		default:
+			break;
 	}
 }
