@@ -56,7 +56,7 @@ function drawRect (x, y, w, h, s) {
 
 function drawMessage (msg, x, y) {
 	context.font = msgFont;
-	context.fillStyle = msgTextColor;
+	context.fillStyle = msgFontColor;
 	context.fillText(msg, x, y + 12);
 }
 
