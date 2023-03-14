@@ -70,17 +70,16 @@ const heartImg = newImg("resources/Heart.png");
 const platformImg = newImg("resources/Platform.png");
 const backgroundImg = newImg("resources/Background1.png");
 
-start();
-
-function start () {
-	window.onload = init;
+window.onload = function () {
 	window.onkeydown = keyDown;
 	window.onkeyup = keyUp;
+	window.addEventListener("touchstart", touchStart, false);
+	window.addEventListener("touchend", touchEnd, false);
+	window.onmousedown = touchStart;
+	window.onmouseup = touchEnd;
 	window.onresize = updateCanvasLocation;
 	window.onblur = function() { if (gState < 2) pause(); };
-}
-
-function init () {
+	
 	initDocument();
 	initGame();
 	
@@ -98,16 +97,12 @@ function initDocument () {
 	// Prepare body
 	document.body.style.background = bodyBackColor;
 	document.body.style.color = bodyTextColor;
-	document.body.style.font = bodyFont;
-	document.body.addEventListener("touchstart", touchStart, false);
-	document.body.addEventListener("touchend", touchEnd, false);
-	document.body.onmousedown = touchStart;
-	document.body.onmouseup = touchEnd;
+	document.body.style.font = bodyFont;	
 	
 	// Prepare canvas
 	canvas = document.getElementById("myCanvas");
-	//var dScreenWidth = floorTen(window.innerWidth);
-	//var dScreenHeight = floorTen(window.innerHeight);
+	//var dScreenWidth = floor(window.innerWidth, 10);
+	//var dScreenHeight = floor(window.innerHeight, 10);
 	//canvas.width = (dScreenWidth < 500 || dScreenWidth > 1000) ? 1000 : dScreenWidth;
 	//canvas.height = (dScreenHeight < 200 || dScreenHeight > 650) ? 650 : dScreenHeight;
 	canvas.width = window.innerWidth;
@@ -118,7 +113,7 @@ function initDocument () {
 	context = canvas.getContext("2d");
 	
 	// Prepare hidden area
-	hidden = document.getElementById("hiddenArea");
+	hidden = document.getElementById("hidden");
 	hidden.style.visibility = "hidden";
 	
 	// Prepare audio

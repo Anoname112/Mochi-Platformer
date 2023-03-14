@@ -94,8 +94,8 @@ function updateCanvasLocation () {
 	canvas.style.top = (window.innerHeight - canvas.height) / 2;
 }
 
-function floorTen (x) {
-	return Math.floor(x / 10) * 10;
+function floor (value, floor) {
+	return Math.floor(value / floor) * floor;
 }
 
 function moveTop (indx) {
