@@ -1,4 +1,4 @@
-function Platform(x, y, width, height, hasDoor, enemyCount) {
+function Platform (x, y, width, height, hasDoor, enemyCount) {
 	this.X = x;
 	this.Y = y;
 	this.Width = width;
@@ -13,7 +13,7 @@ function Platform(x, y, width, height, hasDoor, enemyCount) {
 	}
 }
 
-function Enemy(health, attack, speed, image, leftBound, rightBound, x, y) {
+function Enemy (health, attack, speed, image, leftBound, rightBound, x, y) {
 	this.CurHealth = this.MaxHealth = health;
 	this.Attack = attack;
 	this.Speed = speed;
@@ -25,17 +25,17 @@ function Enemy(health, attack, speed, image, leftBound, rightBound, x, y) {
 	this.Y = y;
 }
 
-function Heart(x, y) {
+function Heart (x, y) {
 	this.X = x;
 	this.Y = y;
 }
 
-function Background(x, y) {
+function Background (x, y) {
 	this.X = x;
 	this.Y = y;
 }
 
-function Door(x, y) {
+function Door (x, y) {
 	this.X = x;
 	this.Y = y;
 }
