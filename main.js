@@ -724,37 +724,21 @@ function timerTick () {
 	drawMessage(player.CurHealth + " / " + player.MaxHealth, messageX, messageY);
 	
 	// Draw level message
-	message = "Level " + level;
-	drawMessage(message, canvas.width - iconX, messageY, "end");
+	drawMessage("Level " + level, canvas.width - iconX, messageY, "end");
 	
 	// Draw middle messages
 	if (isMobile || isPortrait) messageY += msgFontSize + msgSpacing;
-	if (gState == 0) {
-		message = "Paused";
-		drawMessage(message, centerX, messageY, "center");
-	}
+	if (gState == 0) drawMessage("Paused", centerX, messageY, "center");
 	else if (gState == 2) {
 		if (level == finalLevel) {
 			if (isMobile || isPortrait) {
-				message = "You finished the game.";
-				drawMessage(message, centerX, messageY, "center");
-				
+				drawMessage("You finished the game.", centerX, messageY, "center");
 				messageY += msgFontSize + msgSpacing;
-				message = "Press Z to play again";
-				drawMessage(message, centerX, messageY, "center");
+				drawMessage("Press Z to play again", centerX, messageY, "center");
 			}
-			else {
-				message = "You finished the game. Press Z to play again";
-				drawMessage(message, centerX, messageY, "center");
-			}
+			else drawMessage("You finished the game. Press Z to play again", centerX, messageY, "center");
 		}
-		else {
-			message = "You win. Press Z to continue";
-			drawMessage(message, centerX, messageY, "center");
-		}
+		else drawMessage("You win. Press Z to continue", centerX, messageY, "center");
 	}
-	else if (gState == 3) {
-		message = "You lose. Press Z to play again";
-		drawMessage(message, centerX, messageY, "center");
-	}
+	else if (gState == 3) drawMessage("You lose. Press Z to play again", centerX, messageY, "center");
 }
