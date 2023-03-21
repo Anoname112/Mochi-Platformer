@@ -20,7 +20,6 @@ var backgrounds;
 // 3. Lose
 var gState;
 var level;		// Current level
-var message;
 
 var player;
 var mLeft;		// Move left boolean
