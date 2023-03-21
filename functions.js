@@ -54,10 +54,12 @@ function drawRect (x, y, w, h, s) {
 	context.stroke();
 }
 
-function drawMessage (msg, x, y) {
+function drawMessage (msg, x, y, align) {
+	context.textAlign = (align == null) ? "start" : align;
 	context.font = msgFont;
 	context.fillStyle = msgFontColor;
 	context.fillText(msg, x, y + 12);
+	context.textAlign = "start";
 }
 
 function stepCount () {

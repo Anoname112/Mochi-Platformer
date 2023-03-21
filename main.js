@@ -21,7 +21,6 @@ var backgrounds;
 var gState;
 var level;		// Current level
 var message;
-var midMessageX;
 
 var player;
 var mLeft;		// Move left boolean
@@ -631,6 +630,8 @@ function timerTick () {
 	// Invalidate
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	
+	var centerX = canvas.width / 2;
+	
 	fixedY = player.Y;
 	if (fixedY > unfollowLine) fixedY = unfollowLine;
 	
@@ -724,43 +725,36 @@ function timerTick () {
 	
 	// Draw level message
 	message = "Level " + level;
-	var rightMessageX = canvas.width - msgPad - message.length * msgSpacing;
-	drawMessage(message, rightMessageX, messageY);
+	drawMessage(message, canvas.width - iconX, messageY, "end");
 	
 	// Draw middle messages
 	if (isMobile || isPortrait) messageY += msgFontSize + msgSpacing;
 	if (gState == 0) {
 		message = "Paused";
-		midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
-		drawMessage(message, midMessageX, messageY);
+		drawMessage(message, centerX, messageY, "center");
 	}
 	else if (gState == 2) {
 		if (level == finalLevel) {
 			if (isMobile || isPortrait) {
 				message = "You finished the game.";
-				midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
-				drawMessage(message, midMessageX, messageY);
+				drawMessage(message, centerX, messageY, "center");
 				
 				messageY += msgFontSize + msgSpacing;
 				message = "Press Z to play again";
-				midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
-				drawMessage(message, midMessageX, messageY);
+				drawMessage(message, centerX, messageY, "center");
 			}
 			else {
 				message = "You finished the game. Press Z to play again";
-				midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
-				drawMessage(message, midMessageX, messageY);
+				drawMessage(message, centerX, messageY, "center");
 			}
 		}
 		else {
 			message = "You win. Press Z to continue";
-			midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
-			drawMessage(message, midMessageX, messageY);
+			drawMessage(message, centerX, messageY, "center");
 		}
 	}
 	else if (gState == 3) {
 		message = "You lose. Press Z to play again";
-		midMessageX = (isMobile || isPortrait) ? msgPad : (canvas.width - message.length * msgSpacing) / 2;
-		drawMessage(message, midMessageX, messageY);
+		drawMessage(message, centerX, messageY, "center");
 	}
 }
