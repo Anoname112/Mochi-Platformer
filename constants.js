@@ -7,6 +7,7 @@ const scaling = 1.5;
 const deathPadding = 600;
 const gravity = 10;		// Must be smaller than 15
 
+const bodyMargin = "0";
 const bodyBackColor = "#1F1F1F";
 const bodyFontColor = "#FFFFFF";
 const bodyFont = "15px Segoe UI";
