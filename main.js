@@ -20,6 +20,7 @@ var backgrounds;
 // 3. Lose
 var gState;
 var level;		// Current level
+var intervalId;
 
 var player;
 var mLeft;		// Move left boolean
@@ -56,7 +57,7 @@ window.onload = function () {
 		for (var i = 0; i < images.length; i++) {
 			if (!images[i].complete) contentLoaded = false;
 		}
-		if (contentLoaded) setInterval(timerTick, interval);
+		if (contentLoaded) intervalId = setInterval(timerTick, interval);
 	}
 }
 
