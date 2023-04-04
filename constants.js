@@ -63,3 +63,34 @@ const attackPath = "resources/music_attack.wav";
 // Control
 const controlPadding = 10;
 const controlSize = 80;
+
+// Images
+const images = [];
+const Left1 = newImg("resources/player_left1.png");
+const Right1 = newImg("resources/player_right1.png");
+const Left2 = newImg("resources/player_left2.png");
+const Right2 = newImg("resources/player_right2.png");
+const dLeft = newImg("resources/player_dLeft.png");
+const dRight = newImg("resources/player_dRight.png");
+const jLeft = newImg("resources/player_jLeft.png");
+const jRight = newImg("resources/player_jRight.png");
+const jdLeft = newImg("resources/player_jdLeft.png");
+const jdRight = newImg("resources/player_jdRight.png");
+const eLeft = newImg("resources/enemyLeft.png");
+const eRight = newImg("resources/enemyRight.png");
+const rSwordImg1 = newImg("resources/sword2_right1.png");
+const rSwordImg2 = newImg("resources/sword2_right2.png");
+const rSwordImg3 = newImg("resources/sword2_right3.png");
+const lSwordImg1 = newImg("resources/sword2_left1.png");
+const lSwordImg2 = newImg("resources/sword2_left2.png");
+const lSwordImg3 = newImg("resources/sword2_left3.png");
+const doorImg = newImg("resources/Door.png");
+const hpImg = newImg("resources/HPIcon.png");
+const hpBarBackImg = newImg("resources/HPBarBack.png");
+const hpBarGreenImg = newImg("resources/HPBarGreen.png");
+const hpBarYellowImg = newImg("resources/HPBarYellow.png");
+const hpBarRedImg = newImg("resources/HPBarRed.png");
+const hpBarBorderImg = newImg("resources/HPBarBorder.png");
+const heartImg = newImg("resources/Heart.png");
+const platformImg = newImg("resources/Platform.png");
+const backgroundImg = newImg("resources/Background1.png");
