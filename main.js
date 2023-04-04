@@ -76,7 +76,7 @@ window.onload = function () {
 	window.onmousedown = touchStart;
 	window.onmouseup = touchEnd;
 	window.onresize = updateCanvasLocation;
-	window.onblur = function() { if (gState < 2) pause(); };
+	window.onblur = function () { if (gState < 2) pause(); };
 	
 	initDocument();
 	initGame();
@@ -121,7 +121,7 @@ function initDocument () {
 	hidden.innerHTML += "<audio id=\"attack\"><source src=\"" + attackPath + "\" /></audio>";
 	bgm = document.getElementById("bgm");
 	bgm.style.visibility = audioVisibility;
-	bgm.addEventListener('ended', function() {
+	bgm.addEventListener('ended', function () {
 		this.currentTime = 0;
 		this.play();
 	}, false);
