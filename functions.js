@@ -1,3 +1,12 @@
+function getElement (id) {
+	return document.getElementById(id);
+}
+
+function updateCanvasLocation () {
+	canvas.style.left = (window.innerWidth - canvas.width) / 2;
+	canvas.style.top = (window.innerHeight - canvas.height) / 2;
+}
+
 function pause () {
 	gState = 0;
 	bgm.pause();
@@ -89,11 +98,6 @@ function playerDied () {
 function changeDirection (indx) {
 	enemies[indx].Speed = -enemies[indx].Speed;
 	enemies[indx].Image = (enemies[indx].Image == eLeft) ? eRight : eLeft;
-}
-
-function updateCanvasLocation () {
-	canvas.style.left = (window.innerWidth - canvas.width) / 2;
-	canvas.style.top = (window.innerHeight - canvas.height) / 2;
 }
 
 function floor (value, floor) {
