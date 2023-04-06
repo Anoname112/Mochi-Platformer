@@ -33,14 +33,13 @@ var hearts;
 var backgrounds;
 
 window.onload = function () {
-	window.onkeydown = keyDown;
-	window.onkeyup = keyUp;
-	window.addEventListener("touchstart", touchStart, false);
-	window.addEventListener("touchend", touchEnd, false);
-	window.onmousedown = touchStart;
-	window.onmouseup = touchEnd;
+	window.oncontextmenu = onContextMenu;
 	window.onresize = updateCanvasLocation;
-	window.onblur = function () { if (gState < 2) pause(); };
+	window.onkeydown = onKeyDown;
+	window.onkeyup = onKeyUp;
+	window.onblur = function () {
+		if (gState < 2) pause();
+	};
 	
 	initDocument();
 	initGame();
@@ -63,11 +62,11 @@ function initDocument () {
 	document.body.style.font = bodyFont;	
 	
 	// Prepare canvas
-	canvas = document.getElementById("myCanvas");
-	//var dScreenWidth = floor(window.innerWidth, 10);
-	//var dScreenHeight = floor(window.innerHeight, 10);
-	//canvas.width = (dScreenWidth < 500 || dScreenWidth > 1000) ? 1000 : dScreenWidth;
-	//canvas.height = (dScreenHeight < 200 || dScreenHeight > 650) ? 650 : dScreenHeight;
+	canvas = getElement("myCanvas");
+	canvas.addEventListener("touchstart", onMouseDown, false);
+	canvas.addEventListener("touchend", onMouseUp, false);
+	canvas.onmousedown = onMouseDown;
+	canvas.onmouseup = onMouseUp;
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	canvas.style.position = canvasPosition;
@@ -76,24 +75,24 @@ function initDocument () {
 	context = canvas.getContext("2d");
 	
 	// Prepare hidden area
-	hidden = document.getElementById("hidden");
+	hidden = getElement("hidden");
 	hidden.style.visibility = "hidden";
 	
 	// Prepare audio
 	hidden.innerHTML += "<audio id=\"bgm\"><source src=\"" + bgmPath + "\" /></audio>";
 	hidden.innerHTML += "<audio id=\"jump\"><source src=\"" + jumpPath + "\" /></audio>";
 	hidden.innerHTML += "<audio id=\"attack\"><source src=\"" + attackPath + "\" /></audio>";
-	bgm = document.getElementById("bgm");
+	bgm = getElement("bgm");
 	bgm.style.visibility = audioVisibility;
 	bgm.addEventListener('ended', function () {
 		this.currentTime = 0;
 		this.play();
 	}, false);
-	jumpSound = document.getElementById("jump");
-	attackSound = document.getElementById("attack");
+	jumpSound = getElement("jump");
+	attackSound = getElement("attack");
 	
 	// Prepare controls
-	jumpSvg = document.getElementById("jumpSvg");
+	jumpSvg = getElement("jumpSvg");
 	jumpSvg.addEventListener("touchstart", jumpTouchStart, false);
 	jumpSvg.addEventListener("touchend", jumpTouchEnd, false);
 	jumpSvg.onmousedown = jumpTouchStart;
@@ -103,7 +102,7 @@ function initDocument () {
 	jumpSvg.style.left = controlPadding;
 	jumpSvg.style.width = controlSize;
 	jumpSvg.style.height = controlSize;
-	fireSvg = document.getElementById("fireSvg");
+	fireSvg = getElement("fireSvg");
 	fireSvg.addEventListener("touchstart", fireTouchStart, false);
 	fireSvg.addEventListener("touchend", fireTouchEnd, false);
 	fireSvg.onmousedown = fireTouchStart;
@@ -113,7 +112,7 @@ function initDocument () {
 	fireSvg.style.left = controlPadding * 2 + controlSize;
 	fireSvg.style.width = controlSize;
 	fireSvg.style.height = controlSize;
-	leftSvg = document.getElementById("leftSvg");
+	leftSvg = getElement("leftSvg");
 	leftSvg.addEventListener("touchstart", leftTouchStart, false);
 	leftSvg.addEventListener("touchend", leftTouchEnd, false);
 	leftSvg.onmousedown = leftTouchStart;
@@ -123,7 +122,7 @@ function initDocument () {
 	leftSvg.style.right = controlPadding * 2 + controlSize;
 	leftSvg.style.width = controlSize;
 	leftSvg.style.height = controlSize;
-	rightSvg = document.getElementById("rightSvg");
+	rightSvg = getElement("rightSvg");
 	rightSvg.addEventListener("touchstart", rightTouchStart, false);
 	rightSvg.addEventListener("touchend", rightTouchEnd, false);
 	rightSvg.onmousedown = rightTouchStart;
@@ -223,66 +222,11 @@ function initLevel () {
 	else gState = 1;
 }
 
-function touchStart (e) {
-	//var controlCanvasX = e.touches[0].pageX;
-	//var controlCanvasY = e.touches[0].pageY;
-	if (gState == 2) {
-		if (level == finalLevel) initGame();
-		else {
-			level++;
-			initLevel();
-		}
-	}
-	if (gState == 3) initLevel();
+function onContextMenu (e) {
+	e.preventDefault();
 }
 
-function touchEnd (e) {
-	if (gState == 0) resume();
-}
-
-function jumpTouchStart (e) {
-	if (gState == 1 && !player.IsFloating && !player.IsJumped && !jumped) {
-		player.JumpTime = jumpTime;
-		player.IsJumped = true;
-		jumped = true;
-		playAudio(jumpSound);
-	}
-}
-
-function jumpTouchEnd (e) {
-	jumped = false;
-}
-
-function fireTouchStart (e) {
-	if (gState == 1 && !player.IsAttacked && !attacked) {
-		player.AttackTime = attackTime;
-		player.IsAttacked = true;
-		attacked = true;
-		playAudio(attackSound);
-	}
-}
-
-function fireTouchEnd (e) {
-	attacked = false;
-}
-
-function leftTouchStart (e) {
-	if (gState == 1) mLeft = true;
-}
-
-function leftTouchEnd (e) {
-	mLeft = false;
-}
-
-function rightTouchStart (e) {
-	if (gState == 1) mRight = true;
-}
-
-function rightTouchEnd (e) {
-	mRight = false;
-}
-
-function keyDown (e) {
+function onKeyDown (e) {
 	var key = e.keyCode;
 	switch (key) {
 		case 13:	// Enter
@@ -326,7 +270,7 @@ function keyDown (e) {
 	}
 }
 
-function keyUp (e) {
+function onKeyUp (e) {
 	var key = e.keyCode;
 	switch (key) {
 		case 37:	// Left
@@ -344,6 +288,65 @@ function keyUp (e) {
 		default:
 			break;
 	}
+}
+
+function onMouseDown (e) {
+	//var controlCanvasX = e.touches[0].pageX;
+	//var controlCanvasY = e.touches[0].pageY;
+	if (gState == 2) {
+		if (level == finalLevel) initGame();
+		else {
+			level++;
+			initLevel();
+		}
+	}
+	if (gState == 3) initLevel();
+}
+
+function onMouseUp (e) {
+	if (gState == 0) resume();
+}
+
+function jumpTouchStart (e) {
+	if (gState == 1 && !player.IsFloating && !player.IsJumped && !jumped) {
+		player.JumpTime = jumpTime;
+		player.IsJumped = true;
+		jumped = true;
+		playAudio(jumpSound);
+	}
+}
+
+function jumpTouchEnd (e) {
+	jumped = false;
+}
+
+function fireTouchStart (e) {
+	if (gState == 1 && !player.IsAttacked && !attacked) {
+		player.AttackTime = attackTime;
+		player.IsAttacked = true;
+		attacked = true;
+		playAudio(attackSound);
+	}
+}
+
+function fireTouchEnd (e) {
+	attacked = false;
+}
+
+function leftTouchStart (e) {
+	if (gState == 1) mLeft = true;
+}
+
+function leftTouchEnd (e) {
+	mLeft = false;
+}
+
+function rightTouchStart (e) {
+	if (gState == 1) mRight = true;
+}
+
+function rightTouchEnd (e) {
+	mRight = false;
 }
 
 function timerTick () {
