@@ -4,25 +4,18 @@ var jumpSvg;
 var fireSvg;
 var leftSvg;
 var rightSvg;
+var hidden;
 var bgm;
 var jumpSound;
 var attackSound;
-var hidden;
 
-var platforms;
-var enemies;
-var hearts;
-var backgrounds;
-
-// 0. Paused
-// 1. Playing
-// 2. Win
-// 3. Lose
-var gState;
-var level;		// Current level
 var intervalId;
-
-var player;
+var gState;		// 0: Paused, 1: Playing, 2: Win, 3: Lose
+var level;		// Current level
+var unfollowLine;
+var deathLine;
+var pX;
+var pY;
 var mLeft;		// Move left boolean
 var mRight;		// Move right boolean
 var jumped;		// Jump boolean
@@ -32,11 +25,12 @@ var Right;		// Current grounded right image
 var swordImg;	// Current sword image
 var swordX;		// X position
 var swordY;		// Y position
-var pX;
-var pY;
 
-var unfollowLine;
-var deathLine;
+var player;
+var platforms;
+var enemies;
+var hearts;
+var backgrounds;
 
 window.onload = function () {
 	window.onkeydown = keyDown;
