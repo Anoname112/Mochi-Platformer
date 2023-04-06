@@ -37,50 +37,37 @@ function newImg (path) {
 function drawImage (img, x, y, w, h) {
 	w = (w == null) ? img.width : w;
 	h = (h == null) ? img.height : h;
-	context.drawImage(img, x, y, w, h);
+	ctx.drawImage(img, x, y, w, h);
 }
 
 function fillRect (x, y, w, h, s) {
-	context.fillStyle = s == null ? "#000" : s;
-	context.fillRect(x, y, w, h);
+	ctx.fillStyle = s == null ? "#000" : s;
+	ctx.fillRect(x, y, w, h);
 }
 
 function drawLine (x1, y1, x2, y2, s) {
-	context.strokeStyle = (s == null) ? "#000" : s;
-	context.beginPath();
-	context.moveTo(x1, y1);
-	context.lineTo(x2, y2);
-	context.closePath();
-	context.stroke();
+	ctx.strokeStyle = (s == null) ? "#000" : s;
+	ctx.beginPath();
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.closePath();
+	ctx.stroke();
 }
 
 function drawRect (x, y, w, h, s) {
-	context.strokeStyle = (s == null) ? "#000" : s;
-	context.lineWidth = scaling;
-	context.beginPath();
-	context.strokeRect(x, y, w, h);
-	context.closePath();
-	context.stroke();
+	ctx.strokeStyle = (s == null) ? "#000" : s;
+	ctx.lineWidth = scaling;
+	ctx.beginPath();
+	ctx.strokeRect(x, y, w, h);
+	ctx.closePath();
+	ctx.stroke();
 }
 
 function drawMessage (msg, x, y, align) {
-	var backX = x - (w / 2) - msgBackPadding;
-	var backY = y - (h / 2) - msgBackPadding;
-	var backW = w + (msgBackPadding * 2);
-	var backH = h + (msgBackPadding * 2);
-	
-	ctx.strokeStyle = msgBackColor;
-	ctx.fillStyle = msgBackColor;
-	ctx.beginPath();
-	ctx.roundRect(backX, backY, backW, backH, msgBackRadius);
-	ctx.stroke();
-	ctx.fill();
-	
-	ctx.textBaseline = "middle";
 	ctx.textAlign = (align == null) ? "start" : align;
 	ctx.font = msgFont;
 	ctx.fillStyle = msgFontColor;
-	ctx.fillText(msg, x, y);
+	ctx.fillText(msg, x, y + 12);
 	ctx.textAlign = "start";
 }
 
