@@ -1,5 +1,5 @@
 var canvas;
-var context;
+var ctx;
 var jumpSvg;
 var fireSvg;
 var leftSvg;
@@ -72,7 +72,7 @@ function initDocument () {
 	canvas.style.position = canvasPosition;
 	canvas.style.borderRadius = canvasBorderRadius;
 	updateCanvasLocation();
-	context = canvas.getContext("2d");
+	ctx = canvas.getContext("2d");
 	
 	// Prepare hidden area
 	hidden = getElement("hidden");
@@ -595,7 +595,7 @@ function timerTick () {
 	}
 	
 	// Invalidate
-	context.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
 	var centerX = canvas.width / 2;
 	
