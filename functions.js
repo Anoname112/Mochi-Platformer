@@ -64,11 +64,62 @@ function drawRect (x, y, w, h, s) {
 }
 
 function drawMessage (msg, x, y, align) {
-	context.textAlign = (align == null) ? "start" : align;
-	context.font = msgFont;
-	context.fillStyle = msgFontColor;
-	context.fillText(msg, x, y + 12);
-	context.textAlign = "start";
+	var backX = x - (w / 2) - msgBackPadding;
+	var backY = y - (h / 2) - msgBackPadding;
+	var backW = w + (msgBackPadding * 2);
+	var backH = h + (msgBackPadding * 2);
+	
+	ctx.strokeStyle = msgBackColor;
+	ctx.fillStyle = msgBackColor;
+	ctx.beginPath();
+	ctx.roundRect(backX, backY, backW, backH, msgBackRadius);
+	ctx.stroke();
+	ctx.fill();
+	
+	ctx.textBaseline = "middle";
+	ctx.textAlign = (align == null) ? "start" : align;
+	ctx.font = msgFont;
+	ctx.fillStyle = msgFontColor;
+	ctx.fillText(msg, x, y);
+	ctx.textAlign = "start";
+}
+
+function floor (value, floor) {
+	return Math.floor(value / floor) * floor;
+}
+
+function clamp (value, min, max) {
+	return Math.max(Math.min(value, max), min);
+}
+
+function getCenter (object) {
+	return object.Image ? new Vec2(object.Position.X + object.Image.width / 2, object.Position.Y + object.Image.height / 2) : object.Position;
+}
+
+function computeDot (left, right) {
+	return left.X * right.X + left.Y * right.Y;
+}
+
+function computeRadian (left, right) {
+	var plusMinus = (right.X >= left.X) ? 1 : -1;
+	return Math.acos(computeDot(left, right)) * plusMinus;
+}
+
+function radianToDegree (radian) {
+	return radian * 57.2957795;
+}
+
+function degreeToRadian (degree) {
+	return degree * Math.PI / 180;
+}
+
+function rotate (point, center, degree) {
+	var radian = degreeToRadian(degree);
+	var sin = Math.sin(radian);
+	var cos = Math.cos(radian);
+	var x = center.X + (point.X - center.X) * cos - (point.Y - center.Y) * sin;
+	var y = center.Y + (point.X - center.X) * sin + (point.Y - center.Y) * cos;
+	return new Vec2(x, y);
 }
 
 function stepCount () {
@@ -98,10 +149,6 @@ function playerDied () {
 function changeDirection (indx) {
 	enemies[indx].Speed = -enemies[indx].Speed;
 	enemies[indx].Image = (enemies[indx].Image == eLeft) ? eRight : eLeft;
-}
-
-function floor (value, floor) {
-	return Math.floor(value / floor) * floor;
 }
 
 function moveTop (indx) {
