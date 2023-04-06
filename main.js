@@ -107,8 +107,8 @@ function initDocument () {
 	jumpSvg.style.position = "fixed";
 	jumpSvg.style.bottom = controlPadding;
 	jumpSvg.style.left = controlPadding;
-	jumpSvg.children[0].style.width = controlSize;
-	jumpSvg.children[0].style.height = controlSize;
+	jumpSvg.style.width = controlSize;
+	jumpSvg.style.height = controlSize;
 	fireSvg = document.getElementById("fireSvg");
 	fireSvg.addEventListener("touchstart", fireTouchStart, false);
 	fireSvg.addEventListener("touchend", fireTouchEnd, false);
@@ -117,8 +117,8 @@ function initDocument () {
 	fireSvg.style.position = "fixed";
 	fireSvg.style.bottom = controlPadding;
 	fireSvg.style.left = controlPadding * 2 + controlSize;
-	fireSvg.children[0].style.width = controlSize;
-	fireSvg.children[0].style.height = controlSize;
+	fireSvg.style.width = controlSize;
+	fireSvg.style.height = controlSize;
 	leftSvg = document.getElementById("leftSvg");
 	leftSvg.addEventListener("touchstart", leftTouchStart, false);
 	leftSvg.addEventListener("touchend", leftTouchEnd, false);
@@ -127,8 +127,8 @@ function initDocument () {
 	leftSvg.style.position = "fixed";
 	leftSvg.style.bottom = controlPadding;
 	leftSvg.style.right = controlPadding * 2 + controlSize;
-	leftSvg.children[0].style.width = controlSize;
-	leftSvg.children[0].style.height = controlSize;
+	leftSvg.style.width = controlSize;
+	leftSvg.style.height = controlSize;
 	rightSvg = document.getElementById("rightSvg");
 	rightSvg.addEventListener("touchstart", rightTouchStart, false);
 	rightSvg.addEventListener("touchend", rightTouchEnd, false);
@@ -137,8 +137,8 @@ function initDocument () {
 	rightSvg.style.position = "fixed";
 	rightSvg.style.bottom = controlPadding;
 	rightSvg.style.right = controlPadding;
-	rightSvg.children[0].style.width = controlSize;
-	rightSvg.children[0].style.height = controlSize;
+	rightSvg.style.width = controlSize;
+	rightSvg.style.height = controlSize;
 }
 
 function initGame () {
