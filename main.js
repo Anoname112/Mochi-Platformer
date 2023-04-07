@@ -56,6 +56,10 @@ window.onload = function () {
 
 function initDocument () {
 	// Prepare body
+	document.body.addEventListener("touchstart", onMouseDown, false);
+	document.body.addEventListener("touchend", onMouseUp, false);
+	document.body.onmousedown = onMouseDown;
+	document.body.onmouseup = onMouseUp;
 	document.body.style.margin = bodyMargin;
 	document.body.style.background = bodyBackColor;
 	document.body.style.color = bodyFontColor;
@@ -63,10 +67,6 @@ function initDocument () {
 	
 	// Prepare canvas
 	canvas = getElement("myCanvas");
-	canvas.addEventListener("touchstart", onMouseDown, false);
-	canvas.addEventListener("touchend", onMouseUp, false);
-	canvas.onmousedown = onMouseDown;
-	canvas.onmouseup = onMouseUp;
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
 	canvas.style.position = canvasPosition;
