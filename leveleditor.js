@@ -4,7 +4,7 @@
 var finalLevel = 4;
 
 function generateLevel (level) {
-	switch(level) {
+	switch (level) {
 		case 1:
 			platforms.push(new Platform(20, 540, 800, platThick, false, 0));	// 0
 			platforms.push(new Platform(870, 540, 210, platThick, true, 1));	// 1
